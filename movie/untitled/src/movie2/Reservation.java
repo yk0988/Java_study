@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Reservation {
 
@@ -30,18 +29,19 @@ public class Reservation {
 
 
 
-    public static Reservation findById(String resercvationId) throws IOException {
+    public static Reservation findById(String reservationId) throws IOException {
         Reservation r =null;
         BufferedReader br = new BufferedReader(new FileReader(file));
             String line = null;
 
             while((line = br.readLine()) != null) {
                 String[] temp = line.split(",");
-                if(resercvationId.equals(temp[0])) {
-                    r = new Reservation
-                            (Long.parseLong(temp[0]),
+                if(reservationId.equals(temp[0])) {
+                    r = new Reservation(
+                             Long.parseLong(temp[0]),
                              Long.parseLong(temp[1]),
-                            temp[2], temp[3]
+                            temp[2],
+                            temp[3]
               );
                     break;
                 }
@@ -66,10 +66,11 @@ public class Reservation {
             String[] temp = line.split(",");
 
             if(reservationId.equals(temp[0])) {
-                canceled = new Reservation
-                        (Long.parseLong(temp[0]),
+                canceled = new Reservation(
                                 Long.parseLong(temp[0]),
-                                temp[2], temp[3]
+                                Long.parseLong(temp[1]),
+                                                temp[2],
+                                                temp[3]
                         );
                 continue;
             }
@@ -85,7 +86,7 @@ public class Reservation {
 
 
 
-    public static List<Reservation> findByMovieId(String movieIdStr) throws IOException {
+    public static ArrayList<Reservation> findByMovieId(String movieIdStr) throws IOException {
 
         ArrayList<Reservation> reservations = new ArrayList<Reservation>();
         BufferedReader br = new BufferedReader(new FileReader(file));

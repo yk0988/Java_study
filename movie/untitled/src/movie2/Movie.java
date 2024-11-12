@@ -6,9 +6,9 @@ import java.time.Instant;
 import java.util.ArrayList;
 
 public class Movie {
-    private static long id;
-    private static String title;
-    private static String genre;
+    private long id;
+    private String title;
+    private String genre;
     private static final File file = new File("movies.txt");
 
     // 생성자
